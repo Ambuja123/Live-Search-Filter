@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Search</title>
+</head>
+
+<body>
+
+    <h2>Live Search Filter</h2>
+
+    <!-- Search Box -->
+    <input type="text" id="searchBox" placeholder="Type to search...">
+
+    <!-- List -->
+    <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Mango</li>
+        <li>Orange</li>
+        <li>Grapes</li>
+    </ul>
+
+    <!-- No Result Message -->
+    <p id="msg" style="display:none;">No results found</p>
+
+    <script>
+        function searchItem() {
+            let input = document.getElementById("searchBox").value.toLowerCase();
+            let items = document.getElementById("list").getElementsByTagName("li");
+            let found = false;
+
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+
+                if (text.includes(input)) {
+                    items[i].style.display = "list-item";
+                    found = true;
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+
+            // Show message if no result
+            if (found) {
+                document.getElementById("msg").style.display = "none";
+            } else {
+                document.getElementById("msg").style.display = "block";
+            }
+        }
+
+        // Run function when typing
+        document.getElementById("searchBox").onkeyup = searchItem;
+    </script>
+
+</body>
+</html>

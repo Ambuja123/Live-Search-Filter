@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Search</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding-top: 50px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 5px auto;
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px gray;
+        }
+
+        li:hover {
+            background: #e6e6ff;
+        }
+
+        #msg {
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Live Search Filter</h2>
+
+    
+    <input type="text" id="searchBox" placeholder="Search fruits...">
+
+   
+    <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Mango</li>
+        <li>Orange</li>
+        <li>Grapes</li>
+        <li>Pineapple</li>
+    </ul>
+
+   
+    <p id="msg">No results found</p>
+
+    <script>
+        function searchItem() {
+            let input = document.getElementById("searchBox").value.toLowerCase();
+            let items = document.getElementById("list").getElementsByTagName("li");
+            let found = false;
+
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+
+                if (text.includes(input)) {
+                    items[i].style.display = "block";
+                    found = true;
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+
+            if (found) {
+                document.getElementById("msg").style.display = "none";
+            } else {
+                document.getElementById("msg").style.display = "block";
+            }
+        }
+
+        document.getElementById("searchBox").onkeyup = searchItem;
+    </script>
+
+</body>
+</html>
